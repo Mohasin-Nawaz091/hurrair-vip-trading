@@ -1327,16 +1327,19 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
   }
   .nav {
     border-radius: 20px;
+    background: #080B0F;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
     transition: border-radius .22s cubic-bezier(0.16, 1, 0.3, 1), background .22s ease, box-shadow .22s ease, border-color .22s ease;
   }
   .nav.menu-open {
     border-radius: 24px;
-    background: rgba(10, 13, 17, 0.96);
-    border-color: rgba(232, 189, 88, 0.30);
+    background: #080B0F !important;
+    border-color: rgba(232, 189, 88, 0.38) !important;
     box-shadow:
-      0 20px 50px rgba(0, 0, 0, 0.75),
-      inset 0 1px 1px rgba(255, 255, 255, 0.15),
-      0 0 24px rgba(232, 189, 88, 0.10);
+      0 24px 60px rgba(0, 0, 0, 0.95),
+      0 0 0 1px rgba(232, 189, 88, 0.22),
+      0 0 32px rgba(232, 189, 88, 0.15) !important;
   }
 
   .nav-in {
@@ -1384,16 +1387,16 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
     background: var(--gold);
   }
 
-  /* Expandable Capsule Mobile Menu */
+  /* Solid Opaque Mobile Menu Drawer */
   #menu {
     order: 3;
     width: 100%;
     display: none;
     flex-direction: column;
-    padding: 12px 2px 10px;
+    padding: 14px 2px 12px;
     margin-top: 6px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    gap: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    gap: 6px;
     max-height: calc(85vh - 80px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -1401,10 +1404,8 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
     position: static;
     transform: none;
     visibility: visible;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-left: none;
+    background: #080B0F !important;
+    border-radius: 0 0 20px 20px;
   }
   #menu.open {
     display: flex;
@@ -1423,19 +1424,19 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
   }
 
   #menu a:not(.btn) {
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 600;
-    padding: 12px 14px;
+    padding: 13px 16px;
     border-radius: 12px;
-    color: var(--tx2);
+    color: #e5e7eb;
     text-align: left;
     width: 100%;
-    border: 1px solid transparent;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.03);
     transition: all .18s ease;
   }
   #menu a:not(.btn)::after {
@@ -1443,23 +1444,24 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
     font-size: 18px;
     font-weight: 400;
     line-height: 1;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.30);
     transition: transform .2s ease, color .2s ease;
   }
   #menu a:not(.btn):hover,
   #menu a:not(.btn):active {
-    color: var(--tx);
-    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.14);
   }
   #menu a:not(.btn):hover::after,
   #menu a:not(.btn):active::after {
-    color: var(--tx);
+    color: #ffffff;
     transform: translateX(3px);
   }
   #menu a.active {
     color: var(--gold);
-    background: rgba(232, 189, 88, 0.12);
-    border-color: rgba(232, 189, 88, 0.25);
+    background: rgba(232, 189, 88, 0.14);
+    border-color: rgba(232, 189, 88, 0.35);
   }
   #menu a.active::after {
     color: var(--gold);
@@ -1468,22 +1470,22 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
   #menu .btn {
     margin-top: 8px;
     width: 100%;
-    min-height: 44px;
+    min-height: 46px;
     font-size: 14.5px;
     font-weight: 700;
     justify-content: center;
     border-radius: 12px;
     background: var(--gold-grad);
-    box-shadow: 0 4px 16px rgba(232, 189, 88, 0.25);
+    box-shadow: 0 4px 18px rgba(232, 189, 88, 0.30);
   }
 
-  /* Backdrop Dimmer */
+  /* Full Screen Backdrop Blur Dimmer */
   .nav-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(3, 5, 7, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     opacity: 0;
     pointer-events: none;
     transition: opacity .25s ease;
@@ -1494,33 +1496,54 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
     pointer-events: auto;
   }
 
+  /* Blur background page content while menu is open */
+  body.menu-open #main {
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    transition: filter .25s ease;
+  }
+  #main {
+    transition: filter .25s ease;
+  }
+
   /* Light mode mobile menu refinements */
+  [data-theme="light"] .nav {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.12);
+  }
   [data-theme="light"] .nav.menu-open {
-    background: rgba(255, 255, 255, 0.96);
-    border-color: rgba(212, 160, 23, 0.35);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    background: #ffffff !important;
+    border-color: rgba(212, 160, 23, 0.40) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18) !important;
   }
   [data-theme="light"] #menu {
+    background: #ffffff !important;
     border-top-color: rgba(0, 0, 0, 0.08);
   }
   [data-theme="light"] #menu a:not(.btn) {
-    color: #4b5563;
+    color: #1f2937;
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.06);
   }
   [data-theme="light"] #menu a:not(.btn)::after {
-    color: rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.30);
   }
   [data-theme="light"] #menu a:not(.btn):hover,
   [data-theme="light"] #menu a:not(.btn):active {
     color: #111827;
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.12);
   }
   [data-theme="light"] #menu a.active {
     color: #92660a;
-    background: rgba(212, 160, 23, 0.12);
-    border-color: rgba(212, 160, 23, 0.30);
+    background: rgba(212, 160, 23, 0.14);
+    border-color: rgba(212, 160, 23, 0.35);
   }
   [data-theme="light"] #menu a.active::after {
     color: #92660a;
+  }
+  [data-theme="light"] .nav-backdrop {
+    background: rgba(255, 255, 255, 0.80);
   }
 
   .steps { grid-template-columns: 1fr; gap: 20px; }

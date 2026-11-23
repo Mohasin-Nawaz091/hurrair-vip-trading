@@ -165,6 +165,7 @@
     if (nav) nav.classList.toggle('menu-open', o);
     if (backdrop) backdrop.classList.toggle('active', o);
     d.body.classList.toggle('lock', o);
+    d.body.classList.toggle('menu-open', o);
   }
 
   if (b && m) {
