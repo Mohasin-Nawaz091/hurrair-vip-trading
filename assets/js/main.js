@@ -34,9 +34,21 @@
   }
   window.hurrairTrackEvent = trackEvent;
 
+  /* ── Base path helper ── */
+  var basePath = (function() {
+    var p = location.pathname;
+    var idx = p.indexOf('/hurrair-vip-trading');
+    if (idx !== -1) return '/hurrair-vip-trading/';
+    return '/';
+  })();
+
   /* ── APK links & Event Tracking ── */
-  var apkUrl = C.apkUrl || '/apk/hurrair-vip-trading.apk';
+  var rawApk = C.apkUrl || 'apk/hurrair-vip-trading.apk';
+  var apkUrl = /^https?:\/\//i.test(rawApk)
+    ? rawApk
+    : (basePath + rawApk.replace(/^\.\//, '').replace(/^\//, ''));
   var apkFilename = C.apkFilename || 'Hurrair-VIP-Trading.apk';
+
   d.querySelectorAll('[data-apk]').forEach(function(a){
     a.href = apkUrl;
     a.setAttribute('download', apkFilename);
@@ -151,10 +163,11 @@
   }
 
   /* ── Active nav link ── */
-  var path = location.pathname.replace(/\/$/, '');
+  var normPath = location.pathname.replace(/^\/hurrair-vip-trading/, '').replace(/\/$/, '') || '/';
   d.querySelectorAll('#menu a').forEach(function(a){
-    var href = a.getAttribute('href').replace(/\/$/, '');
-    if (href === path || (path === '' && href === '/')) a.classList.add('active');
+    var rawHref = a.getAttribute('href') || '';
+    var href = rawHref.replace(/^\.\.?/, '').replace(/\/$/, '') || '/';
+    if (href === normPath || (normPath === '/' && (href === '/' || href === ''))) a.classList.add('active');
   });
 
   /* ── Scroll reveal ── */

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /assets/
+Disallow: /404.html
+
+Sitemap: https://mohasin-nawaz091.github.io/hurrair-vip-trading/sitemap.xml

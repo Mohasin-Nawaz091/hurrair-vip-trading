@@ -1,7 +1,7 @@
 /* Central configuration — edit this file only. */
 window.HURRAIR_CONFIG = {
-  siteUrl: "https://www.example.com",   // your real production domain (also update sitemap.xml / canonical tags)
-  apkUrl: "/apk/hurrair-vip-trading.apk", // Centralized path to the official release APK file
+  siteUrl: "https://mohasin-nawaz091.github.io/hurrair-vip-trading",   // your real production domain (also update sitemap.xml / canonical tags)
+  apkUrl: "apk/hurrair-vip-trading.apk", // Centralized path to the official release APK file
   apkFilename: "Hurrair-VIP-Trading.apk", // Download attribute filename
   apkVersion: "1.0.0",                   // Verified application version
   apkSize: "76.2 MB",                    // Verified APK file size (79,881,498 bytes)
