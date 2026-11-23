@@ -35,21 +35,12 @@
   window.hurrairTrackEvent = trackEvent;
 
   /* ── APK links & Event Tracking ── */
-  var ok = /^https:\/\//i.test(C.apkUrl || '');
+  var apkUrl = C.apkUrl || '/apk/hurrair-vip-trading.apk';
+  var apkFilename = C.apkFilename || 'Hurrair-VIP-Trading.apk';
   d.querySelectorAll('[data-apk]').forEach(function(a){
-    if (ok) {
-      a.href = C.apkUrl;
-      a.setAttribute('download', '');
-      a.rel = 'noopener';
-    } else {
-      a.href = '/download/';
-      a.addEventListener('click', function(e){
-        if (location.pathname.replace(/\/$/, '') === '/download') {
-          e.preventDefault();
-          toast('The APK download link is being updated. Please check back shortly.');
-        }
-      });
-    }
+    a.href = apkUrl;
+    a.setAttribute('download', apkFilename);
+    a.removeAttribute('target');
 
     a.addEventListener('click', function(){
       trackEvent('apk_download_click', {
