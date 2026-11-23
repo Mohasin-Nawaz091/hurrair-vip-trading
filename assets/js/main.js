@@ -151,15 +151,39 @@
 
   /* ── Mobile menu ── */
   var b = d.getElementById('burger'), m = d.getElementById('menu');
+  var nav = d.querySelector('.nav');
+  var backdrop = d.querySelector('.nav-backdrop');
+  if (!backdrop) {
+    backdrop = d.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    d.body.appendChild(backdrop);
+  }
+
   function setMenu(o){
-    m.classList.toggle('open', o);
-    b.setAttribute('aria-expanded', String(o));
+    if (m) m.classList.toggle('open', o);
+    if (b) b.setAttribute('aria-expanded', String(o));
+    if (nav) nav.classList.toggle('menu-open', o);
+    if (backdrop) backdrop.classList.toggle('active', o);
     d.body.classList.toggle('lock', o);
   }
+
   if (b && m) {
-    b.addEventListener('click', function(){ setMenu(!m.classList.contains('open')); });
-    m.addEventListener('click', function(e){ if (e.target.tagName === 'A') setMenu(false); });
-    d.addEventListener('keydown', function(e){ if (e.key === 'Escape') setMenu(false); });
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      setMenu(!m.classList.contains('open'));
+    });
+    m.addEventListener('click', function(e){
+      if (e.target.tagName === 'A' || e.target.closest('a')) setMenu(false);
+    });
+    backdrop.addEventListener('click', function(){ setMenu(false); });
+    d.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') setMenu(false);
+    });
+    window.addEventListener('resize', function(){
+      if (window.innerWidth > 900 && m.classList.contains('open')) {
+        setMenu(false);
+      }
+    });
   }
 
   /* ── Active nav link ── */
