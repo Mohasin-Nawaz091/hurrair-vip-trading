@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 
 <!-- Theme Bootstrap (Zero-Flicker) -->
-<script>(function(){var t=localStorage.getItem('hurrair-theme')||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');if(t==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
+<script>(function(){var t=localStorage.getItem('hurrair-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');else document.documentElement.removeAttribute('data-theme');})();</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
