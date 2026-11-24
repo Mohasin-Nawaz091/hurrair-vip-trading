@@ -1157,6 +1157,24 @@ em.sell { background: rgba(255, 255, 255, 0.08); color: var(--tx2); }
   padding-top: 24px; border-top: 1px solid var(--bd);
   margin-bottom: 16px;
 }
+.foot-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dev-link {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s, text-shadow .2s;
+}
+.dev-link:hover {
+  color: var(--gold-h);
+  text-decoration: underline;
+  text-shadow: 0 0 10px rgba(232, 189, 88, 0.45);
+}
 
 /* ============================================================
    20. TOAST & SCROLL REVEAL
